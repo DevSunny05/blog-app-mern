@@ -3,16 +3,21 @@ const mongoose=require('mongoose')
 const blogSchema=new mongoose.Schema({
     title:{
         type:String,
-        require:[true,'title is require']
+        required:[true,'title is require']
     },
     description:{
         type:String,
-        require:[true,'description is require']
+        required:[true,'description is require']
     },
     image:{
         type:String,
-        require:[true,'image is require']
+        required:[true,'image is require']
     },
+    user:{
+        type:mongoose.Types.ObjectId,
+        ref:'User',
+        required:[true,'user id is require']
+    }
 },{timestamps:true})
 
 const blogModel=mongoose.model('Blog',blogSchema)
