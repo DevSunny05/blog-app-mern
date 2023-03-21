@@ -6,19 +6,19 @@ exports.getAllBlogController=async(req,res)=>{
     try {
         const blogs=await blogModel.find({}).populate('user')
         if(!blogs){
-            return res.status(200).json({
+            return res.status(200).send({
                 success:false,
                 message:'No blog found'
             })
         }
 
-        return res.status(200).json({
+        return res.status(200).send({
             success:true,
             message:'Successfully get alls blogs',
             blogs
         })
     } catch (error) {
-        return res.status(500).json({
+        return res.status(500).send({
             message:'Failed to get Blogs',
             success:false,
             error
@@ -31,19 +31,19 @@ exports.getSinglrBlogController=async(req,res)=>{
         const {id}=req.params
         const blog=await blogModel.findById(id)
         if(!blog){
-            return res.status(404).json({
+            return res.status(404).send({
                 success:false,
                 message:'Blog not found'
             })
         }
 
-        return res.status(200).json({
+        return res.status(200).send({
             success:true,
             message:'Blog get successfully',
             blog
         })
     } catch (error) {
-        return res.status(500).json({
+        return res.status(500).send({
             message:'Failed to get Blog',
             success:false,
             error
@@ -57,7 +57,7 @@ exports.createBlogController=async(req,res)=>{
         const {title,description,image,user}=req.body
 
         if(!title || !image || !description || !user){
-            return res.status(200).json({
+            return res.status(200).send({
                 success:false,
                 message:'Please provide all fields'
             })
@@ -65,7 +65,7 @@ exports.createBlogController=async(req,res)=>{
 
         const existingUser=await userModel.findById(user)
         if(!existingUser){
-            return res.status(404).json({
+            return res.status(404).send({
                 success:false,
                 message:'Unable to find user'
             })
@@ -80,14 +80,14 @@ exports.createBlogController=async(req,res)=>{
         await session.commitTransaction()
 
         await newBlog.save()
-        return res.status(201).json({
+        return res.status(201).send({
             success:true,
             message:'Blog created successfully',
             newBlog
         })
 
     } catch (error) {
-        return res.status(500).json({
+        return res.status(500).send({
             message:'Failed to create Blog',
             success:false,
             error
@@ -101,14 +101,14 @@ exports.updateBlogController=async(req,res)=>{
         const {id}=req.params
         const {title,description,image}=req.body
         const blog=await blogModel.findByIdAndUpdate(id,{...req.body},{new:true})
-        return res.status(201).json({
+        return res.status(201).send({
             success:true,
             message:'Successfully updated',
             blog
         })
 
     } catch (error) {
-        return res.status(500).json({
+        return res.status(500).send({
             message:'Failed to update Blog',
             success:false,
             error
@@ -124,19 +124,19 @@ exports.deleteBlogController=async(req,res)=>{
         await blog.user.blogs.pull(blog)
         await blog.user.save()
         if(!blog){
-            return res.status(404).json({
+            return res.status(404).send({
                 success:false,
                 message:'Blog dosent found'
             })
         }
 
-        return res.status(200).json({
+        return res.status(200).send({
             success:true,
             message:'Successfully deleted'
         })
         
     } catch (error) {
-        return res.status(500).json({
+        return res.status(500).send({
             message:'Failed to delete Blog',
             success:false,
             error
@@ -150,19 +150,19 @@ exports.userBlogController=async(req,res)=>{
         const {id}=req.params
         const userBlog=await userModel.findById(id).populate('blogs')
         if(!userBlog){
-            return res.status(404).json({
+            return res.status(404).send({
                 success:false,
                 message:'blogs are not available'
         })
         }
 
-        return res.status(200).json({
+        return res.status(200).send({
             success:true,
             message:'Blogs get successfully',
             userBlog
     })
     } catch (error) {
-        return res.status(500).json({
+        return res.status(500).send({
             message:'Failed to get user Blog',
             success:false,
             error

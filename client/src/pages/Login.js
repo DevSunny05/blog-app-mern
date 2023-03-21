@@ -30,7 +30,6 @@ const Login = () => {
             if(data.success){
               localStorage.setItem('userId',data?.user._id)
               dispatch(login())
-                alert('User Login successfully')
                 navigate('/')
             }
         } catch (error) {

@@ -23,7 +23,7 @@ export default function BlogCard({title,description,image,username,time}) {
           </Avatar>
         }
         
-        title={title}
+        title={username}
         subheader={time}
         
       />
@@ -35,8 +35,11 @@ export default function BlogCard({title,description,image,username,time}) {
         sx={{objectFit:'cover'}}
       />
       <CardContent>
+      <Typography variant="h6" color="text.secondary">
+          Title:{title}
+        </Typography>
         <Typography variant="body2" color="text.secondary">
-          {description}
+          Description:{description}
         </Typography>
       </CardContent>
     </Card>
