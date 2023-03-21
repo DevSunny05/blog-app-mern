@@ -1,16 +1,22 @@
 import React, { useState } from 'react'
 import {Box,AppBar,Toolbar,Button, Typography, Tabs, Tab} from '@mui/material'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { logout } from '../redux/authSlice'
 
 const Header = () => {
     const [value,setValue]=useState()
     const dispatch=useDispatch()
+    const navigate=useNavigate()
     const isLogin=useSelector((state)=>state.auth.isLogin)
     
     const handleLogout=()=>{
+       try {
         dispatch(logout())
+        navigate('/login')
+       } catch (error) {
+        console.log(error)
+       }
     }
   return (
     <>

@@ -2,7 +2,7 @@ const express=require('express')
 const { getAllBlogController, createBlogController, updateBlogController, deleteBlogController, getSinglrBlogController, userBlogController } = require('../controllers/blogController')
 const router=express.Router()
 // GET || ALL Blogs
-router.get('/all-blogs',getAllBlogController)
+router.get("/all-blogs",getAllBlogController)
 
 // get  || get single blog
 router.get('/get-blog/:id',getSinglrBlogController)
