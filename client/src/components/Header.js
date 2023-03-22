@@ -3,16 +3,19 @@ import {Box,AppBar,Toolbar,Button, Typography, Tabs, Tab} from '@mui/material'
 import { Link, useNavigate } from 'react-router-dom'
 import { useSelector,useDispatch } from 'react-redux'
 import { logout } from '../redux/authSlice'
+import  toast  from 'react-hot-toast'
 
 const Header = () => {
     const [value,setValue]=useState()
     const dispatch=useDispatch()
     const navigate=useNavigate()
-    const isLogin=useSelector((state)=>state.auth.isLogin)
-    
+    let isLogin=useSelector((state)=>state.auth.isLogin)
+    isLogin= isLogin || localStorage.getItem('userId')
     const handleLogout=()=>{
        try {
         dispatch(logout())
+        toast.success('Logout successfully')
+        localStorage.clear()
         navigate('/login')
        } catch (error) {
         console.log(error)

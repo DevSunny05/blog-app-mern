@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom'
 import {useDispatch} from 'react-redux'
 import axios from 'axios'
 import { login } from '../redux/authSlice'
+import toast from 'react-hot-toast'
 
 const Login = () => {
   const dispatch=useDispatch()
@@ -30,7 +31,8 @@ const Login = () => {
             if(data.success){
               localStorage.setItem('userId',data?.user._id)
               dispatch(login())
-                navigate('/')
+              toast.success('Login Successfull')
+                navigate('/blogs')
             }
         } catch (error) {
             console.log(error)
