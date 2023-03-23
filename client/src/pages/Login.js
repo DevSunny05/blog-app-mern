@@ -29,13 +29,14 @@ const Login = () => {
             })
             
             if(data.success){
-              localStorage.setItem('userId',data?.user._id)
+              localStorage.setItem('token',data.token)
               dispatch(login())
               toast.success('Login Successfull')
                 navigate('/blogs')
             }
         } catch (error) {
             console.log(error)
+            toast.error('error')
         }
     }
 

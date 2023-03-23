@@ -14,9 +14,11 @@ const Header = () => {
     const handleLogout=()=>{
        try {
         dispatch(logout())
-        toast.success('Logout successfully')
         localStorage.clear()
         navigate('/login')
+        toast.success('Logout successfully')
+        
+        
        } catch (error) {
         console.log(error)
        }
