@@ -10,7 +10,9 @@ import CreateBlog from './pages/CreateBlog';
 import BlockDetails from './pages/BlockDetails';
 import {Toaster} from 'react-hot-toast'
 import PublicRoutes from './PublicRoutes';
-import ProtectedRoute from './ProtectedRoute';
+import ProtectedRoute from './ProtectedRoute'
+
+
 function App() {
   return (
     <div className="App">
@@ -23,7 +25,6 @@ function App() {
         <Route path='/blog-details/:id' element={<ProtectedRoute><BlockDetails/></ProtectedRoute>}/>
         <Route path='/login' element={<PublicRoutes><Login/></PublicRoutes>}/>
         <Route path='/register' element={<PublicRoutes><Register/></PublicRoutes>}/>
-        
       </Routes>
      
     </div>
