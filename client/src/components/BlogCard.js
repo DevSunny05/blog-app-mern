@@ -4,8 +4,8 @@ import CardHeader from '@mui/material/CardHeader'
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent'
 import Avatar from '@mui/material/Avatar';
-import Typography from '@mui/material/Typography';
-import { red } from '@mui/material/colors';
+import Typography from '@mui/material/Typography'
+import { red } from '@mui/material/colors'
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete'
 import { Box, IconButton } from '@mui/material'
